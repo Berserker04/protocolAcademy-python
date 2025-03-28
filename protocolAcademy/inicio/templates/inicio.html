@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia Real | Protocolo y Etiqueta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #F5DEB3;
+            --dark: #333;
+            --light: #FFF8E1;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--dark);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+        }
+        
+        .navbar {
+            background-color: var(--primary) !important;
+        }
+        
+        .btn-gold {
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light);
+            border-left: 5px solid var(--primary);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-crown me-2"></i>Academia Real
+            </a>
+            <button title="test" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#programs"">Programas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a class="btn btn-gold" href="servicios/matricula/matricula.htm">Matricúlate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+                        <!-- ¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a> -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">Domina el Arte del Protocolo</h1>
+            <p class="lead mb-5">Transforma tu presencia social y profesional con nuestros exclusivos programas de etiqueta</p>
+            <a href="#programs" class="btn btn-gold btn-lg px-4 me-2">Ver Programas</a>
+            <a href="#register" class="btn btn-outline-light btn-lg px-4">Inscripción</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3" alt="Protocolo" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-4">Excelencia en Protocolo desde 1985</h2>
+                    <p class="lead">Formamos líderes con distinción y elegancia</p>
+                    <p>La Academia Real es la institución pionera en formación de protocolo y etiqueta en el país. Nuestro método exclusivo combina tradición y modernidad para prepararte ante cualquier situación social o profesional.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Profesores con experiencia en casas reales</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Certificación internacional</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Enfoque práctico y personalizado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Nuestros Programas</h2>
+                <p class="lead text-muted">Selecciona el curso que se adapte a tus necesidades</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h4 class="card-title">Protocolo Ejecutivo</h4>
+                            <p class="card-text">Domina las reglas de etiqueta en el mundo corporativo y diplomático.</p>
+                            <ul class="list-unstyled text-start mb-4">
+                                <li><i class="fas fa-check text-primary me-2"></i> Reuniones de negocios</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Protocolo internacional</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Comunicación ejecutiva</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Más información</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-glass-cheers"></i>
+                            </div>
+                            <h4 class="card-title">Etiqueta Social</h4>
+                            <p class="card-text">Aprende a desenvolverte con elegancia en cualquier evento social.</p>
+                            <ul class="list-unstyled text-start mb-4">
+                                <li><i class="fas fa-check text-primary me-2"></i> Protocolo en la mesa</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Vestimenta adecuada</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Invitados y anfitriones</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Más información</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-chess-queen"></i>
+                            </div>
+                            <h4 class="card-title">Protocolo Real</h4>
+                            <p class="card-text">El programa más exclusivo para eventos de alta protocolaria.</p>
+                            <ul class="list-unstyled text-start mb-4">
+                                <li><i class="fas fa-check text-primary me-2"></i> Ceremonias oficiales</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Precedencias y tratamientos</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Organización de eventos</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Más información</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mb-5">
+            <p class="lead text-muted">Y muchos más</p>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Testimonios</h2>
+                <p class="lead text-muted">Lo que dicen nuestros alumnos</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 testiomonial-card">
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-quote-left text-primary"></i>
+                            </div>
+                            <p class="card-text">"La Academia Real transformó completamente mi presencia ejecutiva. Ahora me siento seguro en cualquier reunión internacional."</p>
+                            <div class="d-flex align-items-center mt-4">
+                                <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="María" class="rounded-circle me-3" width="50">
+                                <div>
+                                    <h6 class="mb-0">María González</h6>
+                                    <small class="text-muted">Directora de Relaciones Internacionales</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 testiomonial-card">
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-quote-left text-primary"></i>
+                            </div>
+                            <p class="card-text">"El curso de Etiqueta Social me dio las herramientas para organizar eventos impecables. Invaluable para mi carrera."</p>
+                            <div class="d-flex align-items-center mt-4">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos" class="rounded-circle me-3" width="50">
+                                <div>
+                                    <h6 class="mb-0">Carlos Mendoza</h6>
+                                    <small class="text-muted">Event Planner</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 testiomonial-card">
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-quote-left text-primary"></i>
+                            </div>
+                            <p class="card-text">"Como diplomático, el Protocolo Real ha sido fundamental para mi desempeño en embajadas y eventos oficiales."</p>
+                            <div class="d-flex align-items-center mt-4">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana" class="rounded-circle me-3" width="50">
+                                <div>
+                                    <h6 class="mb-0">Ana Beltrán</h6>
+                                    <small class="text-muted">Cuerpo Diplomático</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration CTA -->
+    <section id="register" class="py-5 bg-primary text-white">
+        <div class="container py-5 text-center">
+            <h2 class="fw-bold mb-4">¿Listo para transformar tu presencia?</h2>
+            <p class="lead mb-5">Únete a nuestra próxima generación de alumnos</p>
+            <a class="btn btn-gold" href="servicios/matricula/matricula.htm">Inscríbete</a>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-4">Contacto</h2>
+                    <p class="lead">Estamos aquí para responder tus preguntas</p>
+                    
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i> 
+                            Av. Protocolo 123, Distrito Elegante
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-phone text-primary me-2"></i> 
+                            +1 234 567 890
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-envelope text-primary me-2"></i> 
+                            contacto@academiareal.com
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-4">
+                        <a href="#" class="text-decoration-none me-3">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none me-3">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none me-3">
+                            <i class="fab fa-linkedin-in fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="text-white mb-4">
+                        <i class="fas fa-crown me-2"></i> Academia Real
+                    </h5>
+                    <p>Líderes en formación de protocolo y etiqueta desde 1985. Excelencia, tradición y distinción.</p>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Programas</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Ejecutivo</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Social</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Real</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Personalizado</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Nosotros</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Profesores</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Eventos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p>Suscríbete para recibir consejos de etiqueta y protocolo.</p>
+                    <form class="row g-2">
+                        <div class="col-8">
+                            <input type="email" class="form-control" placeholder="Tu correo">
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-gold w-100">Suscribir</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <hr class="my-4 bg-secondary">
+            
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 Academia Real. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Política de privacidad</a>
+                    <a href="#" class="text-white text-decoration-none">Términos de servicio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
