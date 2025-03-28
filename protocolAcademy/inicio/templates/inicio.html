@@ -76,7 +76,7 @@
                         <a class="nav-link" href="#contact">Contacto</a>
                     </li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a class="btn btn-gold" href="servicios/matricula/matricula.htm">Matricúlate</a>
+                        <a class="btn btn-gold" href="{% url 'mis_cursos' %}">Matricúlate</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
@@ -93,7 +93,7 @@
             <h1 class="display-3 fw-bold mb-4">Domina el Arte del Protocolo</h1>
             <p class="lead mb-5">Transforma tu presencia social y profesional con nuestros exclusivos programas de etiqueta</p>
             <a href="#programs" class="btn btn-gold btn-lg px-4 me-2">Ver Programas</a>
-            <a href="#register" class="btn btn-outline-light btn-lg px-4">Inscripción</a>
+            <a href="{% url 'mis_cursos' %}" class="btn btn-outline-light btn-lg px-4">Inscripción</a>
         </div>
     </section>
 
@@ -258,7 +258,7 @@
         <div class="container py-5 text-center">
             <h2 class="fw-bold mb-4">¿Listo para transformar tu presencia?</h2>
             <p class="lead mb-5">Únete a nuestra próxima generación de alumnos</p>
-            <a class="btn btn-gold" href="servicios/matricula/matricula.htm">Inscríbete</a>
+            <a class="btn btn-gold" href="{% url 'mis_cursos' %}">Inscríbete</a>
         </div>
     </section>
 

@@ -14,7 +14,7 @@ def index(request):
         if user is not None:
             login(request, user)
             request.session['alumno'] = f"{user.first_name} {user.last_name}"
-            return redirect('gestion')  # Cambia 'gestion' por tu vista protegida
+            return redirect('mis_cursos')  # Cambia 'gestion' por tu vista protegida
         else:
             messages.error(request, 'Nombre de usuario o contraseña incorrectos')
     return render(request, 'login.html')
@@ -40,8 +40,8 @@ def registrar(request):
             user = authenticate(request, username=alumno.correo, password=alumno.contraseña)
             if user:
                 login(request, user)
-                return redirect('gestion')
-            # return redirect('gestion', {'nombres': form.nombres, 'apellidos': form.apellidos})
+                request.session['alumno'] = f"{user.first_name} {user.last_name}"
+                return redirect('mis_cursos')
     else:
         form = RegistrarForm()
 

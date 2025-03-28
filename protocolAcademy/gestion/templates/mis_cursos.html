@@ -108,6 +108,7 @@
           <i class="fas fa-crown me-2"></i>Academia Real
         </a>
         <button
+          title="test"
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -121,12 +122,12 @@
               <p class="text-white m-2">Bienvenido, {{ alumno }}</p>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#"
+              <a class="nav-link active" href="{% url 'mis_cursos' %}"
                 ><i class="fas fa-book-open me-1"></i> Mis Cursos</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href=""
+              <a class="nav-link" href="{% url 'perfil' %}"
                 ><i class="fas fa-user-edit me-1"></i> Perfil</a
               >
             </li>
@@ -174,7 +175,9 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Matricular curso</h5>
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Matricular curso
+                </h5>
                 <button
                   type="button"
                   class="btn-close"
@@ -183,47 +186,51 @@
                 ></button>
               </div>
               <div class="modal-body">
-                <form class="row g-3" id="form_matricula" method="post" action="{% url 'registrar_inscripcion' %}">
-                    <div class="col-md-6">
-                      <label for="inputEmail4" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="inputEmail4">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputPassword4" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="inputPassword4">
-                    </div>
-                    <div class="col-12">
-                      <label for="inputAddress" class="form-label">Address</label>
-                      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                    </div>
-                    <div class="col-12">
-                      <label for="inputAddress2" class="form-label">Address 2</label>
-                      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="inputCity" class="form-label">City</label>
-                      <input type="text" class="form-control" id="inputCity">
-                    </div>
-                    <div class="col-md-4">
-                      <label for="inputState" class="form-label">State</label>
-                      <select id="inputState" class="form-select">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                      </select>
-                    </div>
-                    <div class="col-md-2">
-                      <label for="inputZip" class="form-label">Zip</label>
-                      <input type="text" class="form-control" id="inputZip">
-                    </div>
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                        <label class="form-check-label" for="gridCheck">
-                          Check me out
-                        </label>
-                      </div>
-                    </div>
-                  </form>
+                <form
+                  class="row g-3"
+                  id="form_matricula"
+                  method="post"
+                  action="{% url 'registrar_inscripcion' %}"
+                >
+                  {% csrf_token %}
+                  <div class="col-md-12">
+                    <label for="curso" class="form-label">Curso</label>
+                    <select
+                      name="curso"
+                      id="curso"
+                      class="form-select"
+                      required
+                    >
+                      <option value="" disabled selected>Seleccionar...</option>
+                      {% for curso in cursos %}
+                      <option value="{{ curso.id }}">{{ curso.nombre }}</option>
+                      {% empty %}
+                      <option disabled>No hay cursos disponibles</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="col-md-12">
+                    <label for="instructor" class="form-label"
+                      >Instructor</label
+                    >
+                    <select
+                      name="instructor"
+                      id="instructor"
+                      class="form-select"
+                      required
+                    >
+                      <option value="" disabled selected>Seleccionar...</option>
+                      {% for instructor in instructores %}
+                      <option value="{{ instructor.id }}">
+                        {{ instructor.nombres }} {{ instructor.apellidos }}
+                      </option>
+                      {% empty %}
+                      <option disabled>No hay instructores registrados</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </form>
               </div>
               <div class="modal-footer">
                 <button
@@ -233,103 +240,68 @@
                 >
                   Cerrar
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button
+                  type="submit"
+                  form="form_matricula"
+                  class="btn btn-primary"
+                >
                   Matricular
                 </button>
               </div>
             </div>
           </div>
         </div>
-        <!-- Cursos activos -->
+        <!-- Cursos activos del alumno -->
         <div class="row mb-5">
           <div class="col-12">
+            {% if inscripciones %} {% for inscripcion in inscripciones %}
             <div class="card curso-card mb-4">
               <div class="curso-header">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h3 class="h5 mb-0">Protocolo Ejecutivo</h3>
+                  <h3 class="h5 mb-0">{{ inscripcion.curso.nombre }}</h3>
+                  <span class="badge badge-estado badge-pro">Inscrito</span>
                 </div>
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-8">
                     <p class="text-muted mb-3">
-                      Domina las reglas de etiqueta en el mundo corporativo y
-                      diplomático.
+                      {{ inscripcion.curso.descripcion }}
                     </p>
                     <div class="d-flex flex-wrap">
                       <div class="me-4 mb-2">
                         <i class="fas fa-calendar-alt text-primary me-2"></i>
-                        <strong>Inicio:</strong> 15/03/2025
+                        <strong>Inicio:</strong> {{ inscripcion.curso.fecha_inicio }}
                       </div>
                       <div class="me-4 mb-2">
                         <i class="fas fa-clock text-primary me-2"></i>
-                        <strong>Duración:</strong> 40 horas
+                        <strong>Duración:</strong> {{ inscripcion.curso.duracion }} horas
                       </div>
                       <div class="me-4 mb-2">
                         <i
                           class="fas fa-chalkboard-teacher text-primary me-2"
                         ></i>
-                        <strong>Instructor:</strong> Prof. Martínez
+                        <strong>Instructor:</strong> {{ inscripcion.instructor.nombres }} {{ inscripcion.instructor.apellidos }}
                       </div>
                     </div>
                   </div>
                   <div
                     class="col-md-4 d-flex align-items-center justify-content-end action-buttons"
                   >
-                    <button class="btn btn-primary btn-sm">
-                      <i class="fas fa-pencil-alt me-1"></i> Editar
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm">
-                      <i class="fas fa-trash-alt me-1"></i> Eliminar
-                    </button>
+                    <form method="post" action="{% url 'eliminar_inscripcion' %}">
+                      {% csrf_token %}
+                      <input title="test" type="text" name="id" value="{{ inscripcion.curso.id }}" hidden >
+                      <button type="submit" class="btn btn-outline-danger btn-sm">
+                        <i class="fas fa-trash-alt me-1"></i> Eliminar
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="card curso-card mb-4">
-              <div class="curso-header">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h3 class="h5 mb-0">Etiqueta Social Avanzada</h3>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-8">
-                    <p class="text-muted mb-3">
-                      Aprende a desenvolverte con elegancia en cualquier evento
-                      social de alto nivel.
-                    </p>
-                    <div class="d-flex flex-wrap">
-                      <div class="me-4 mb-2">
-                        <i class="fas fa-calendar-alt text-primary me-2"></i>
-                        <strong>Inicio:</strong> 05/04/2025
-                      </div>
-                      <div class="me-4 mb-2">
-                        <i class="fas fa-clock text-primary me-2"></i>
-                        <strong>Duración:</strong> 30 horas
-                      </div>
-                      <div class="me-4 mb-2">
-                        <i
-                          class="fas fa-chalkboard-teacher text-primary me-2"
-                        ></i>
-                        <strong>Instructor:</strong> Dra. Fernández
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="col-md-4 d-flex align-items-center justify-content-end action-buttons"
-                  >
-                    <button class="btn btn-primary btn-sm">
-                      <i class="fas fa-pencil-alt me-1"></i> Editar
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm">
-                      <i class="fas fa-trash-alt me-1"></i> Eliminar
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {% endfor %} {% else %}
+            <p class="text-muted">Aún no estás inscrito en ningún curso.</p>
+            {% endif %}
           </div>
         </div>
 

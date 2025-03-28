@@ -2,134 +2,136 @@
 
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Iniciar Sesión</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f9;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      .login-container {
-        background: white;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 400px;
-      }
-      h2 {
-        color: #333;
-        text-align: center;
-        margin-bottom: 1.5rem;
-      }
-      .form-group {
-        margin-bottom: 1rem;
-      }
-      label {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #555;
-      }
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 1rem;
-      }
-      button {
-        width: 100%;
-        padding: 0.75rem;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 1rem;
-        margin-top: 1rem;
-      }
-      button:hover {
-        background-color: #45a049;
-      }
-      .alert {
-        padding: 0.75rem;
-        margin-bottom: 1rem;
-        border-radius: 4px;
-      }
-      .alert-error {
-        background-color: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
-      }
-      .alert-success {
-        background-color: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
-      }
-      .register-link {
-        text-align: center;
-        margin-top: 1rem;
-      }
-      .btnReistrar {
-        color: #4caf50;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="login-container">
-      <h2>Registrate</h2>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrarse | Academia Real</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8B4513;
+      --secondary: #F5DEB3;
+      --dark: #333;
+      --light: #FFF8E1;
+    }
 
-      {% if messages %} {% for message in messages %}
-      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-      {% endfor %} {% endif %}
+    body {
+      font-family: 'Georgia', serif;
+      background-color: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
 
-      <form method="post">
-        {% csrf_token %}
+    .register-box {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
 
-        <div class="form-group">
-          <label for="id_nombres">Nombres</label>
-          <input title="nombres" type="text" name="nombres" id="id_nombres" required />
-        </div>
-        <div class="form-group">
-          <label for="id_apellidos">Apellidos</label>
-          <input type="text" name="apellidos" id="id_apellidos" required />
-        </div>
-        <div class="form-group">
-          <label for="id_documento">Cocumento</label>
-          <input type="text" name="documento" id="id_documento" required />
-        </div>
-        <div class="form-group">
-          <label for="id_correo">Correo</label>
-          <input type="text" name="correo" id="id_correo" required />
-        </div>
+    .register-box h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
 
-        <div class="form-group">
-          <label for="id_contraseña">Contraseña</label>
-          <input type="password" name="contraseña" id="id_contraseña" required />
-        </div>
+    .form-label {
+      font-weight: bold;
+      color: var(--dark);
+    }
 
-        <button type="submit">Registrar</button>
-      </form>
+    .form-control {
+      padding: 0.75rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
 
-      <div class="register-link">
-        ¿Ya tienes una cuenta? <a class="btnReistrar" href="{% url 'login' %}">Inicia sesión</a>
+    .btn-register {
+      background-color: var(--primary);
+      color: white;
+      font-weight: bold;
+      border: none;
+    }
+
+    .btn-register:hover {
+      background-color: #5c3310;
+    }
+
+    .alert {
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .register-link a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-box">
+    <h2><i class="fas fa-user-plus me-2"></i>Registro de Alumno</h2>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="id_nombres" class="form-label">Nombres</label>
+        <input type="text" name="nombres" id="id_nombres" class="form-control" required>
       </div>
-      <div class="register-link">
-        <a href="{% url 'inicio' %}">Regresar al inicio</a>
+
+      <div class="mb-3">
+        <label for="id_apellidos" class="form-label">Apellidos</label>
+        <input type="text" name="apellidos" id="id_apellidos" class="form-control" required>
       </div>
+
+      <div class="mb-3">
+        <label for="id_documento" class="form-label">Documento</label>
+        <input type="text" name="documento" id="id_documento" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_correo" class="form-label">Correo electrónico</label>
+        <input type="email" name="correo" id="id_correo" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_contraseña" class="form-label">Contraseña</label>
+        <input type="password" name="contraseña" id="id_contraseña" class="form-control" required>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-register">Registrarse</button>
+      </div>
+    </form>
+
+    <div class="register-link mt-3">
+      ¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión</a><br>
+      <a href="{% url 'inicio' %}">← Regresar al inicio</a>
     </div>
-  </body>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

@@ -18,5 +18,5 @@ class Inscripcion(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     fecha_inscripcion = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.alumno} inscrito en {self.curso} con {self.instructor}"
+    # def __str__(self):
+    #     return f"{self.alumno} inscrito en {self.curso} con {self.instructor}"
